@@ -1,0 +1,1976 @@
+$primary-font : 'Avenir',sans-serif;
+$font-for-header: 'Helvetica',sans-serif;
+$color-bg-testimonials: #9c69e2;
+
+//responsive screen breakpoints
+$break-xs: 575px;
+$break-s:   576px;
+$break-m:  768px;
+$break-l: 992px;
+$break-xl: 1600px;
+
+@mixin debug($color:red){
+    border: 1px $color solid;
+}
+@mixin mq($break){
+    @if $break == 'xs'{
+        @media(max-width: $break-xs){
+            @content;
+        }
+    }
+    @else if $break == 'sm'{
+        @media screen and (min-width: $break-s) and (max-width:$break-m - 1px){
+            @content;
+        }
+    }
+    @else if $break == 'med'{
+        @media screen and (min-width:$break-m) and (max-width:$break-l){
+            @content;
+        }
+    }
+    @else if $break == 'lg'{
+        @media screen and (min-width:$break-l) and (max-width:$break-xl - 1px){
+            @content;
+        }
+    }
+    @else if $break == 'lg-med'{
+        @media screen and (min-width:$break-m + 1px) and (max-width:$break-l - 1px){
+            @content;
+        }
+    }
+    @else if $break == 'xl-med'{
+        @media screen and (min-width:$break-m + 1px) and (max-width:$break-xl - 1px){
+            @content;
+        }
+    }
+    @else if $break == 'xl-sm'{
+        @media screen and (min-width:$break-s + 1px) and (max-width:$break-xl - 1px){
+            @content;
+        }
+    }
+
+}
+@function get-rem-size($px-size){
+    @return ($px-size / 16px) * 1em;
+}
+@mixin sm-xs{
+    @include mq(sm){
+        @content;
+    }
+    @include mq(xs){
+        @content;
+    }
+}
+@mixin current{
+    @include mq(sm){
+        @include debug;
+        @content;
+    }
+    @include mq(xs){
+        @include debug(blue);
+        @content;
+    }
+}
+@mixin user-ellipse{
+    &__ellipse {
+        @include location-and-size(55px, 10px, 639px, 93px);
+        &__dot1 {
+            @include test-dot(5px, 5px, 3px, 50px, white);
+        }
+        &__dot2 {
+            @include test-dot(5px, 5px, 3px, 35px, white);
+        }
+        &__dot3 {
+            @include test-dot(5px, 5px, 3px, 20px, white);
+        }
+        &__dot4 {
+            @include test-dot(10px, 10px, 0px, 5px, #F063B8);
+        }
+    }
+}
+
+@mixin text{
+    font-family: $primary-font;
+    font-style: normal;
+    line-height: 160%;
+    color: #4B5D68;
+    @content;
+}
+@mixin user-text{
+    @include text;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 180%;    
+}
+@mixin user-position{
+    @include text;
+    font-weight: 500;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.01em;
+    color: $color-bg-testimonials;
+}
+@mixin user-box{
+    background: #FFFFFF;
+    box-shadow: inset 0px -20px 0px rgba(74, 13, 158, 0.692);
+    border-radius: 20px;
+}
+@mixin user1{
+
+    &__users{
+        @include location-and-size(645px, 330px, 249px, 93px);
+        @include user-box;
+        @include mq(xs){
+            left: 25px;
+        }
+        &__text {
+            @include location-and-size-index(385px, 130px, 150px, 190px,3);
+
+            @include user-text; 
+            @include sm-xs{
+                font-size: 2vw;
+                height: auto;
+                width: 40vw;
+                left: 140px;
+            }
+            @include mq(xs) {
+                left: 25px;
+                top: 175px;           
+             }
+        }
+        &__name {
+            @include location-and-size(170px, 29px, 80px, 190px);
+            @include user-name;
+            @include mq(xs){
+                left: 50%;
+                font-size: 3vw;
+            }
+        }
+        &__position {
+            @include location-and-size(101px, 22px, 109px, 190px);
+            @include user-position;
+            @include mq(xs){
+                left: 50%;
+                font-size: 3vw;
+            }
+        }
+        &__img{
+            @include location-and-size(90px, 90px, 60px, 70px);
+            @include mq(xs){
+                left: 25px;
+                width: 20vw;
+                height: auto;
+            }
+        }
+        @content;
+    }
+}
+@mixin user-arrow{
+    &__buttonArrow{
+        width: 80px;
+        height: 60px;
+        position: absolute;
+        right: 50px;
+        bottom: 50px;
+        &1{
+            @include location-and-size(14px, 14px, 25px, 0px);
+            border: 2px solid white;
+            border-width: 0 3px 3px 0 ;
+            transform:rotate(135deg);
+        }
+        &2{
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            right: 0;
+            top: 25px;
+            border: 2px solid white;
+            border-width: 0 3px 3px 0 ;
+            transform:rotate(-45deg);
+        
+        }
+        &Line{
+            position: absolute;
+            width: 40px;
+            height: 0px;
+            bottom:25px;
+            left: 1.5px;
+            border: 2px solid white;
+            border-width: 0 3px 3px 0;
+            transform: rotate(-180deg);
+        }
+        &Line2{
+            position: absolute;
+            width:20px;
+            height: 0px;
+            right: 1.5px;
+            border: 2px solid white;
+            border-width: 0 3px 3px 0;
+            transform: rotate(180deg);
+            bottom: 25px;
+        }
+    }
+}
+@mixin user2{
+    &__users2 {
+        @include location-and-size-index(358px, 330px, 249px, 758px,2);
+        @include user-box;
+        &__text {
+            @include location-and-size-index(180px, 130px, 145px, 160px,2);
+            @include user-text;         
+        }
+        &__position {
+            @include location-and-size(82px, 22px, 104px, 160px);
+            @include user-position;
+        }
+        &__name {
+            @include location-and-size(170px, 29px, 75px, 160px);
+            @include user-name;
+        }
+        &__img{
+            @include location-and-size(90px, 90px, 55px, 40px);
+        }
+    }
+}
+@mixin location-and-size($width, $height, $top:null, $left:null, $position: absolute,$right:null, $bottom:null) {
+    position: $position;
+    left: $left;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    height: $height;
+    width: $width;
+}
+
+@mixin link{
+    text-decoration: none;
+    font-family: $primary-font;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 160%;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.005em;
+    color: #212353;
+}
+@mixin header{
+    font-family: $font-for-header;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 130%;
+    display: flex;
+    align-items: center;
+    color: #212353;
+}
+@mixin footer-button{
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 900;
+    display: inline-grid;
+    align-items: center;
+}
+@mixin footertext{
+    font-family: $primary-font;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 160%;
+    color: #212353;
+}
+@mixin footer-list-text{
+    font-family: $primary-font;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 250%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+@mixin user-name{
+    font-family: $primary-font;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 160%;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.005em;
+    color: #212353;
+}
+@mixin header-container{
+    font-family: $font-for-header;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 130%;
+    align-items: center;
+    text-align: center;
+    color: #212353;
+    @content;
+}
+@mixin location-and-size-index($width, $height, $top, $left, $index) {
+    @include location-and-size($width, $height, $top, $left);
+    z-index: $index;
+}
+
+@mixin size($width, $height) {
+    height: $height;
+    width: $width;
+}
+
+@mixin arrowLine($width, $top, $left, $bgColor, $degree) {
+    @include location-and-size-index($width, 0px, $top, $left,3);
+    background-color: $bgColor;
+    border: 2px solid $bgColor;
+    box-sizing: border-box;
+    transform: $degree;
+}
+
+@mixin arrow($top, $left, $bgcolor, $rotate) {
+    @include location-and-size(14px, 14px, $top, $left);
+    border: 2px solid $bgcolor;
+    box-sizing: border-box;
+    border-width: 0 3px 3px 0;
+    transform: $rotate;
+    z-index: 3;
+}
+
+@mixin shape-in-trapezoid($width, $height, $top, $left, $rotate) {
+    @include location-and-size($width, $height, $top, $left);
+    z-index: 2;
+    transform: $rotate;
+}
+
+@mixin logo-dot($width, $height, $top, $left, $bgColor) {
+    @include location-and-size($width, $height, $top, $left);
+    background-color: $bgColor;
+    border-radius: 20px;
+}
+@mixin logo-dot-responsive($width,$height,$bgColor) {
+    width: $width;
+    height: $height;
+    background-color: $bgColor;
+    border-radius: 20px;
+}
+
+@mixin test-dot($width, $height, $top, $left, $bgColor) {
+    @include location-and-size($width, $height, $top, $left);
+    border-radius: 50px;
+    border: none;
+    background: $bgColor;
+}
+
+@mixin trapezoid($width, $height, $top, $left, $bgColor) {
+    @include location-and-size($width, $height, $top, $left);
+    background: $bgColor;
+    opacity: 0.1;
+    clip-path: polygon(58px 0%, 100% 0, 100% 100%, 0% 100%);
+    border-top-right-radius: 50px;
+    border-top-left-radius: 111px 231px;
+    border-bottom-left-radius: 50px 124px;
+    border-bottom-right-radius: 50px;
+    z-index: 1;
+}
+
+@mixin social-media{
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        bottom: 0px;
+        border-radius: 50px;
+        display: block;
+        background: #212353;
+        opacity: 0.1;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        @content;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: $primary-font;
+    font-weight: 500;
+    position: relative;
+
+    background: linear-gradient(180deg, #F6FAFD 0%, #FFFFFF 19.4%);
+    @media screen and (min-width:$break-xl){
+        max-width: 1600px;
+        // width: 1600px;
+        width: 80vw;
+        height: 4350px;
+    }
+
+}
+@media screen and (min-width:$break-xl) {
+    .navbar {
+        &__dot1 {
+            @include logo-dot(20px, 20px, 74px, 240px, $color-bg-testimonials);
+        }
+        &__dot2 {
+            @include logo-dot(20px, 35px, 59px, 269px, #f063b8);
+        }
+        &__list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        &__item {
+            position: absolute;
+            color: #4B5D68;
+            line-height: 160%;
+            top: 64px;
+            height: 26px;
+            &_active {
+                font-weight: 800;
+                @include location-and-size(53px, 30px, 62px, 410px);
+                color: #212352;
+            }
+
+            &:nth-child(2) {
+                width: 35px;
+                left: 503px;
+            }
+
+            &:nth-child(3) {
+                width: 63px;
+                left: 578px;
+            }
+
+            &:nth-child(4) {
+                width: 51px;
+                left: 681px;
+            }
+            &__link {
+                text-decoration: none;
+                color: black;
+                font-size: 16px;
+                font-style: normal;
+            }
+        }
+        &__link {
+            &__button {
+                @include location-and-size(210px, 60px, 47px, 1150px);
+                background: #FFFFFF;
+                border: none;
+                box-shadow: 0px 5px 5px rgba(75, 93, 104, 0.1);
+                border-radius: 50px;
+            }
+        }
+        &__buttonText {
+            @include location-and-size-index(152px, 26px, 64px, 1179px,2);
+            @include link;
+        }
+        &__buttonArrow1 {
+            @include arrow(72px, 1329px, $color-bg-testimonials, rotate(-45deg));
+        }
+
+        &__buttonArrowLine {
+            @include arrowLine(20px, 77px, 1324px, $color-bg-testimonials, rotate(0deg));
+        }
+
+    }
+
+    .container1 {
+  
+        &__header {
+            @include location-and-size(645px, 184px, 237px, 240px);
+            font-family: $font-for-header;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 80px;
+            line-height: 110%;
+            display: flex;
+            align-items: center;
+            color: #212353;
+        }
+
+        &__text {
+            @include location-and-size(380px, 120px, 471px, 240px);
+            @include text{
+                font-weight: 500;
+                font-size: 18px;
+            }            
+        }
+
+        &__img {
+            @include location-and-size(885px, 468px, 333px, 603px);
+        }
+
+        &__learnMore {
+            &__button {
+                @include location-and-size(170px, 60px, 641px, 240px);
+                border: none;
+                background: $color-bg-testimonials;
+                border-radius: 50px;
+                font-family: $primary-font;
+                font-style: normal;
+                font-size: 18px;
+                align-items: center;
+                text-align: center;
+                color: #FFFFFF;
+                font-weight: 800;
+            }
+        }
+    }
+
+
+
+    .container2 {
+        @include location-and-size(1117px, 560px, 903.18px, 240px);
+        background: rgba(240, 99, 184, 0.15);
+        border-radius: 50px;
+        &__header {
+            @include location-and-size(475px, 100px, 125px, 550px);
+            @include header;
+            font-weight: bold;
+            font-size: 40px;
+        }
+        &__text {
+            @include location-and-size(474px, 170px, 265px, 550px);
+            @include text{
+                font-weight: 500;
+                font-size: 18px;            
+            }
+        }
+
+        &__img {
+            @include location-and-size(477px, 504px, 31.82px, 11px);
+        }
+    }
+
+
+    .container3 {
+        @include location-and-size(584px, 160px, 1613px, 507.29px);
+
+        &__header {
+            @include location-and-size(405px, 52px, 0px, 89px);
+            @include header-container{
+                font-size: 40px;
+            }
+        }
+
+        &__text {
+            position: absolute;
+            width: 584px;
+            top: 120px;
+            @include text;
+            font-weight: 500;
+            font-size: 18px;
+            text-align: center;
+        }
+    }
+
+
+    .container5 {
+        @include location-and-size(1118px, 709px, 2789px, 242px);
+        background: $color-bg-testimonials;
+        border-radius: 50px;
+        &__header {
+            @include location-and-size-index(405px, 52px, 109px, 93px,2);
+            @include header-container{
+                font-size: 40px;
+                display:flex;
+                color:white;
+            }
+        }
+        &__buttonArrow1 {
+            @include arrow(632px, 962px, white, rotate(135deg));
+        }
+        &__buttonArrowLine2 {
+            @include arrowLine(20px, 637px, 1022px, white, rotate(-180deg));
+        }
+        &__buttonArrow2 {
+            @include arrow(632px, 1029px, white, rotate(-45deg));
+        }
+        &__buttonArrowLine {
+            @include arrowLine(40px, 637px, 962px, white, rotate(-180deg));
+        }
+        @include user1;
+        @include user2;
+        &__users2Background {
+            @include location-and-size-index(360px, 330px, 249px, 758px,5);
+            background: linear-gradient(270deg, $color-bg-testimonials 9.75%, rgba(255, 255, 255, 0) 100%);
+            border: 1px solid $color-bg-testimonials;
+            box-sizing: border-box;
+            border-radius: 20px;
+        }
+        @include user-ellipse;
+    }
+
+
+    .footer {
+        @include location-and-size(1600px, 613px, 3648px, 0px);
+        &__free {
+            @include location-and-size(405px, 52px, 102px, 240px);
+            @include header-container;
+            display: flex;
+            font-size: 40px;
+        }
+        &__freeText {
+            @include location-and-size(584px, 29px, 174px, 240px);
+            @include text;
+            font-weight: 500;
+            font-size: 18px;
+        }
+        &__buttons {
+            @include location-and-size(410px, 60px, 121px,947px);
+            &__learnMore {
+                @include location-and-size(170px, 60px, 0px, 0px);
+                @include text;
+                @include footer-button;
+                background: #F063B8;
+                font-size: 18px;
+                text-align: center;
+                color: #FFFFFF;
+            }
+            &__requestDemo {
+                @include location-and-size(210px, 60px, 0px,200px);
+                @include text;
+                @include footer-button;
+                background: #FFFFFF;
+                box-shadow: 0px 5px 5px rgba(75, 93, 104, 0.1);
+                font-size: 16px;
+                letter-spacing: 0.005em;
+                color: #212353;
+            }
+            &__arrowLine {
+                @include arrowLine(20px, 30px, 361px, $color-bg-testimonials, rotate(0deg));
+            }
+            &__arrow {
+                @include arrow(25px, 366px, $color-bg-testimonials, rotate(-45deg));
+            }
+        }
+        &__line {
+            @include location-and-size(1600px, 2px, 0px, 0px);
+            background: $color-bg-testimonials;
+            opacity: 0.2;
+        }
+        &__dot1 {
+            @include logo-dot(20px, 20px, 368px, 240px, $color-bg-testimonials);
+        }
+        &__dot2 {
+            @include logo-dot(20px, 35px, 353px, 269px, #f063b8);
+        }
+        &__company {
+            @include location-and-size(153px, 30px, 356px, 309px);
+            @include user-name;
+            font-size: 20px;
+        }
+        &__address {
+            @include location-and-size(335px, 65px, 453px, 240px);
+            @include user-name;   
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 180%;
+            letter-spacing: 0.01em;
+        }
+        &__phone {
+            @include location-and-size(335px, 60px, 528px, 240px);
+            @include user-name;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 180%;
+            letter-spacing: 0.01em;
+        }
+        
+        &__about {
+            @include location-and-size(51.75px, 30px, 363px, 715px);
+            @include footertext;
+        }
+        &__help {
+            @include location-and-size(51.75px, 30px, 363px, 931px);
+            @include footertext;
+        }
+        &__socialMedia {
+            @include location-and-size(178px, 110px, 361px, 1147px);
+            &__header {
+                @include location-and-size(170px, 30px, 0px, 0px);
+                @include footertext;
+            }
+            &__facebook {
+                @include social-media{
+                    left: 0px;
+                    background-image: url(./img/facebook_logo.png);
+                    background-size: 9.58px 19.81px;
+                }
+            }
+            &__twitter {
+                @include social-media{
+                    left: 64px;
+                    background-image: url(./img/twitter_logo.png);
+                    background-size: 18.27px 14.56px;
+                }
+            }
+            &__instagram {
+                @include social-media{
+                    right: 0px;
+                    background-image: url(./img/instagram_logo.png);
+                    background-size: 16px 15.47px;
+                }
+            }
+        }
+        &__aboutLinks{
+            &__list{
+                @include location-and-size(166px, 160px, 423px, 715px);
+                @include footer-list-text;
+            }
+            &__item__link {
+                text-decoration: none;
+                color: #212353;
+            }
+        }
+        &__helpLinks{
+            &__item__link{
+                text-decoration: none;
+                color: hsl(238, 43%, 23%);
+            }
+            &__list{
+                @include location-and-size(166px, 190px, 423px, 931px);
+                @include footer-list-text;
+            }
+        }
+    }
+}
+.flex{
+    display:flex;
+    // justify-content: center; //left to right
+    align-items: center;
+    height:100%;
+    align-items: flex-start;
+}
+
+
+
+.container4{
+    @media screen and (max-width:$break-xl - 1px) {
+    padding: 0;
+    max-width: $break-l + 100px;
+    margin: 50px auto 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    
+    }
+    @include sm-xs{
+        max-width: $break-l;
+        width: 80vw;
+    }
+    .searchData{
+        @media screen and (max-width:$break-xl - 1px) {
+        width: 532.29px;
+        height: 388px;
+        position: relative;
+        }
+        @media screen and (min-width:$break-xl) {
+            @include location-and-size(532.29px, 388px, 1843px, 239px);
+        }
+        &__header {
+            @include location-and-size(200px, 50px, 79px, $right: 70px);
+            z-index: 3;
+            @include header-container{
+                font-weight: normal;
+                font-size: 24px;
+                line: height 130%;
+                display:flex;
+            }
+            @include sm-xs{
+                font-size: 4vw;
+                max-width: 200px;
+                width: 70vw;
+                margin-right:0px;
+            }
+            @include mq(xs){
+                width: 30vw;
+            }
+        }
+        &__text {
+            @include location-and-size(220px, 160px, 150px, $right:50px);
+            z-index: 3;
+            @include text;
+            font-weight: normal;
+            font-size: 16px;
+            @include sm-xs{
+                max-width: 220px;
+                width: 50vw;
+            }
+            @include mq(xs){
+                font-size: 3vw;
+                width: 35vw;
+            }
+        }
+
+        &__roundedTrapezoid {
+            @include trapezoid(442px, 358px, 30px, 89.29px, #68C9BA);
+            @include sm-xs{
+                max-width: 442;
+                width: 70vw;
+                left: 0px;
+            }
+        }
+
+        &__link {
+            @include location-and-size(127px, 26px, 329px, 261.29px);
+            @include link;
+            @include sm-xs{
+                left:25px;
+            }
+        }
+
+        &__img {
+            @include location-and-size(232px,211px,103px,0px);
+            @include sm-xs{
+                max-width: 232px;
+                width: 30vw;
+                height: auto;
+            }
+        }
+
+        &__img2 {
+            @include location-and-size-index(203.82px,140.6px,44px,316.46px,2);
+            @include mq(xs) {
+                display:none;
+            }
+        }
+
+        &__img3 {
+            @include location-and-size-index(33.7px,20.91px,77px,382px,2);
+            @include mq(xs) {
+                display:none;
+            }
+        }
+
+        &__buttonArrow1 {
+            @include arrow(337px, 387px, $color-bg-testimonials, rotate(-45deg));
+            @include sm-xs{
+                left:118px + 22px;
+            }
+        }
+
+        &__buttonArrowLine {
+            @include arrowLine(20px, 341px, 381px, $color-bg-testimonials, rotate(0deg));
+            @include sm-xs{
+                left:135px;
+            }
+        }
+    }
+    .hoursAccess {
+        @media screen and (max-width:$break-xl - 1px) {
+        position: relative;
+        width: 544.28px;
+        height: 394.56px;
+        top: 30px;
+        }
+        @media screen and (min-width:$break-xl) {
+            @include location-and-size(544.28px,394.56px,1873px,813px);
+        }
+        &__header {
+            @include location-and-size(200px,50px,49px,$right: 70px);
+            @include header;
+            @include sm-xs{
+                font-size: 4vw;
+                max-width: 200px;
+                width: 57vw;
+                margin-right:0px;
+
+            }
+            @include mq(xs){
+                width: 30vw;
+            }
+        }
+
+        &__text {
+            @include location-and-size(220px, 160px, 119px,$right:50px);
+            z-index: 3;
+            @include text;
+            font-weight: normal;
+            font-size: 16px;
+            @include sm-xs{
+                max-width: 220px;
+                width: 50vw;
+            }
+            @include mq(xs){
+                font-size: 3vw;
+                width: 35vw;
+            }
+        }
+
+        &__img {
+            @include location-and-size(241px,185px,71px,0px);
+            @include sm-xs{
+                max-width: 232px;
+                width: 30vw;
+                height: auto;
+            }
+        }
+
+        &__img2 {
+            @include location-and-size-index(199.22px,142.3px,194px,303px,2);
+            transform: rotate(182deg);
+            @include mq(xs) {
+                display:none;
+            }
+        }
+
+        &__link {
+            @include location-and-size(127px,26px,299px,274.28px);
+            @include link;
+            @include sm-xs{
+                left:25px;
+            }
+        }
+
+        &__roundedTrapezoid {
+            @include trapezoid(442px, 358px, 0px, 102.28px, $color-bg-testimonials);
+            @include sm-xs{
+                max-width: 442;
+                width: 70vw;
+                left: 0px;
+            }
+        }
+
+        &__buttonArrow1 {
+            @include arrow(307px, 400px, $color-bg-testimonials, rotate(-45deg));
+            @include sm-xs{
+                left:118px + 23px;
+            }
+        }
+
+        &__buttonArrowLine {
+            @include arrowLine(20px, 312px, 395.28px, $color-bg-testimonials, rotate(0deg));
+            @include sm-xs{
+                left:135px;
+            }
+        }
+    }
+    .printOut {
+        @media screen and (max-width:$break-xl - 1px) {
+        width: 550.28px;
+        height: 358px;
+        margin-top: 50px;
+        position: relative;
+        }
+        @media screen and (min-width:$break-xl) {
+            @include location-and-size(550.28px,358px,2281px,220px);
+        }
+        &__header {
+            // @include location-and-size(200px,50px,49px,280.29px);
+            @include location-and-size(200px,50px,49px,$right:70px);
+            @include header;
+            @include sm-xs{
+                font-size: 4vw;
+                max-width: 200px;
+                width: 70vw;
+                margin-right:0px;
+            }
+            @include mq(xs){
+                width: 30vw;
+            }
+        }
+        &__text {
+            // @include location-and-size(220px,160px,119px,280.29px);
+            @include location-and-size(220px,160px,119px,$right: 50px);
+
+            @include text{
+                font-weight: normal;
+                font-size: 16px;
+            }
+            @include sm-xs{
+                max-width: 220px;
+                width: 50vw;
+            }
+            @include mq(xs){
+                font-size: 3vw;
+                width: 35vw;
+            }
+        }
+        &__roundedTrapezoid {
+            @include trapezoid(442px, 358px, 0px, 108.28px, #F063B8);
+            @include sm-xs{
+                max-width: 442;
+                width: 70vw;
+                left: 0px;
+            }
+        }
+        &__link {
+            @include location-and-size(127px,26px,299px,280.29px);
+            @include link;
+            @include sm-xs{
+                left:25px;
+            }
+        }
+        &__buttonArrow1 {
+            @include arrow(307px, 406px, $color-bg-testimonials, rotate(-45deg));
+            @include sm-xs{
+                left:118px + 22px;
+            }
+        }
+        &__buttonArrowLine {
+            @include arrowLine(20px, 312px, 401px, $color-bg-testimonials, rotate(0deg));
+            @include sm-xs{
+                left:135px;
+            }
+        }
+        &__img{
+            @include location-and-size(245px, 181px, 123px, 0px);
+            @include sm-xs{
+                max-width: 232px;
+                width: 30vw;
+                height: auto;
+            }
+        }
+        &__img2{
+            @include shape-in-trapezoid(68.05px, 42.21px, 29px, 454.29px, rotate(131deg));
+            @include mq(xs) {
+                display:none;
+            }
+        }
+    }
+    .securityCode {
+        @media screen and (max-width:$break-xl - 1px) {
+        width: 539px;
+        height:364px;
+        margin-top:50px;
+        position: relative;
+        }
+        @media screen and (min-width:$break-xl) {
+            @include location-and-size(539.28px,364px,2275px,818px);
+        }
+        &__header {
+            // @include location-and-size(200px,50px,55px,269.28px);
+            @include location-and-size(200px,50px,55px,$right: 70px);
+            @include header;
+            @include sm-xs{
+                font-size: 4vw;
+                max-width: 200px;
+                width: 57vw;
+                margin-right:0px;
+
+            }
+            @include mq(xs){
+                width: 30vw;
+            }
+        }
+        &__text {
+
+            // @include location-and-size-index(210px, 160px, 125px, 269.28px,3);
+            @include location-and-size(210px, 160px, 125px, $right: 50px);
+            z-index: 3;
+            @include text;
+            font-weight: normal;
+            font-size: 16px;
+            @include sm-xs{
+                max-width: 220px;
+                width: 50vw;
+            }
+            @include mq(xs){
+                font-size: 3vw;
+                width: 35vw;
+            }
+        }
+        &__roundedTrapezoid {
+            @include trapezoid(442px, 358px, 0px, 97.28px, #2D9CDB);
+            @include sm-xs{
+                max-width: 442;
+                width: 70vw;
+                left: 0px;
+            }
+        }
+        &__link {
+            @include location-and-size(127px,26px,305px,268.28px);
+            @include link;
+            @include sm-xs{
+                left:25px;
+            }
+        }
+        &__buttonArrow1 {
+            @include arrow(313px, 395px, $color-bg-testimonials, rotate(-45deg));
+            @include sm-xs{
+                left:118px + 23px;
+            }
+        }
+        &__buttonArrowLine {
+            @include arrowLine(20px, 318px, 389px, $color-bg-testimonials, rotate(0deg));
+            @include sm-xs{
+                left:135px;
+            }
+        }
+        &__img{
+            @include location-and-size-index(230px, 201px, 92px, 0px, 3);
+            @include sm-xs{
+                max-width: 232px;
+                width: 30vw;
+                height: auto;
+            }
+            
+        }
+        &__img2{
+            transform: rotate(121deg);
+            @include location-and-size-index(313px, 208px, 43px, 123px, 2);
+            @include mq(xs) {
+                display:none;
+            }
+        }
+        &__img3{
+            @include shape-in-trapezoid(30px, 43px, 291px, 457px, rotate(-217deg));
+            @include mq(xs) {
+                display:none;
+            }
+        }
+    }
+}
+@media screen and (max-width:$break-xl - 1px) {
+    .container5{
+        max-width: $break-l + 100px;
+        @include mq(xl-sm){
+            margin: 150px auto 0 auto;
+        }
+        border-radius: 50px;
+        background: $color-bg-testimonials;
+        height: 709px;
+        position: relative;
+        display: flex;
+        @include mq(xl-med){
+        }
+        &__header {
+            @include mq(xl-sm){
+                @include location-and-size-index(405px, 52px, 109px, 93px,2);
+            }
+            @include header-container{
+                font-size: 40px;
+                display:flex;
+                color:white;
+            }
+            @include mq(xs){
+                @include location-and-size-index(405px, 52px, 109px, 25px,2);
+                font-size: 7vw;
+            }
+        }
+        @include user1{
+            // @include mq(xl-sm){
+                max-width:645px;
+                width: 70vw;
+            // }
+            &__text{
+                max-width:385px;
+                width: 40vw;
+            }
+
+        };
+        @media screen and (max-width:1100px){
+            &__users2{
+                display:none;
+                &__text{
+                    display:none;
+                }
+                &__position{
+                    display:none;
+                }
+            }
+            &__users2Background {
+                display:none;
+            }
+        }
+        &__users2 {
+            @include location-and-size-index(358px, 330px, 249px, 758px,2);
+            max-width: 330px;
+            width: 30vw;
+            @include user-box;
+            &__text {
+                @include location-and-size-index(180px, 130px, 145px, 160px,2);
+                @include user-text;               
+            }
+            &__position {
+                @include location-and-size(82px, 22px, 104px, 160px);
+                @include user-position;
+            }
+            &__name {
+                @include location-and-size(170px, 29px, 75px, 160px);
+                @include user-name;
+            }
+            &__img{
+                @include location-and-size(90px, 90px, 55px, 40px);
+            }
+        }
+        &__users2Background {
+            @include location-and-size-index(360px, 330px, 249px, 758px,5);
+            max-width: 332px;
+            width: 30vw;
+            background: linear-gradient(270deg, $color-bg-testimonials 9.75%, rgba(255, 255, 255, 0) 100%);
+            border: 1px solid $color-bg-testimonials;
+            box-sizing: border-box;
+            border-radius: 20px;
+        }
+        @include user-ellipse;
+        @include user-arrow;
+    }
+    // .footer__line {
+    hr{
+        background: $color-bg-testimonials;
+        opacity: 0.2;
+        margin-top: 125px;
+    }
+    .footer{
+        position: relative;
+        padding: 0;
+        max-width: $break-l + 100px;
+        margin: 50px auto 0 auto;
+        height:600px;
+        @include sm-xs{
+            display:flex;
+            flex-direction: column;
+            height: 990px;
+        }
+        &__free {
+            @include location-and-size(405px, 52px, 100px, 0px);
+            @include header-container;
+            // display: flex;
+            font-size: 40px;
+            @include sm-xs{
+                display:block;
+                position: relative;
+                top:0;
+                width: 100%;
+            }
+        }
+        &__freeText {
+            @include location-and-size(584px, 29px, 174px, 0px);
+            @include text;
+            font-weight: 500;
+            font-size: 18px;
+            @include sm-xs{
+                position: relative;
+                width: 100%;
+                top:0px;
+                text-align: center;
+                margin: 10px 0;
+            }
+            @include mq(xs){
+                font-size: 3vw;
+            }
+        }
+        &__buttons {
+            @include location-and-size(410px,60px,121px,$right:0px);
+            @include sm-xs{
+                width: 100%;
+                position: relative;
+                top: 0;
+
+            }
+            &__learnMore {
+                @include location-and-size(170px, 60px, 0px, 0px);
+                @include text;
+                @include footer-button;
+                background: #F063B8;
+                font-size: 18px;
+                text-align: center;
+                color: #FFFFFF;
+                @include sm-xs{
+                    width: 100%;
+                    // display:block;
+                }
+            }
+            &__requestDemo {
+                @include location-and-size(210px, 60px, 0px,200px);
+                @include text;
+                @include footer-button;
+                background: #FFFFFF;
+                box-shadow: 0px 5px 5px rgba(75, 93, 104, 0.1);
+                font-size: 16px;
+                letter-spacing: 0.005em;
+                color: #212353;
+                @include sm-xs{
+                    width: 100%;
+                    left:0;
+                    top:60px + 25px;
+                    text-align: center;
+                }
+            }
+            &__arrowLine {
+                @include mq(xl-med){
+                    @include arrowLine(20px, 30px, 361px, $color-bg-testimonials, rotate(0deg));
+                }
+                @include sm-xs{
+                    @include location-and-size(20px, 0px,120px,$right:29px);
+                    background-color: $color-bg-testimonials;
+                    border: 2px solid $color-bg-testimonials;
+                    box-sizing: border-box;
+                    transform: rotate(0deg);
+                }
+                @include mq(xs){
+                    right:15px;
+                }
+            }
+            &__arrow {
+                @include mq(xl-med){
+                    @include arrow(25px, 366px, $color-bg-testimonials, rotate(-45deg));
+                }
+                @include sm-xs{
+                    @include location-and-size(14px,14px,115px,$right:29px);
+                    border: 2px solid $color-bg-testimonials;
+                    box-sizing: border-box;
+                    border-width: 0 3px 3px 0;
+                    transform: rotate(-45deg);
+                }
+                @include mq(xs){
+                    right:15px;
+                }
+            }
+        }
+        &__dot1 {
+            @include mq(xl-med){
+                @include logo-dot(20px, 20px, 368px, 0px, $color-bg-testimonials);
+            }
+            @include sm-xs{
+                position: absolute;
+                bottom: 125px;
+                @include logo-dot-responsive(20px, 20px, $color-bg-testimonials);
+            }
+        }
+        &__dot2 {
+            @include mq(xl-med){
+                @include logo-dot(20px, 35px, 353px, 29px, #f063b8);
+            }
+            @include sm-xs{
+                position: absolute;
+                bottom: 125px;
+                left: 29px;
+                @include logo-dot-responsive(20px, 35px, #f063b8);
+            }
+        }
+        &__company {
+            @include mq(xl-med){
+                @include location-and-size(153px, 30px, 356px, 70px);
+                
+            }
+            @include user-name;
+            font-size: 20px;
+            @include sm-xs{
+                position: absolute;
+                bottom:125px;
+                left: 75px;
+            }
+            @include mq(xs){
+                font-size: 5vw;
+            }
+        }
+        &__address {
+            @include mq(xl-med){
+                @include location-and-size(335px, 65px, 453px, 0px);
+            }
+            @include user-name;   
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 180%;
+            letter-spacing: 0.01em;
+            @include sm-xs{
+                position: absolute;
+                bottom: 60px;
+                width: 100%;
+                text-align: center;
+                justify-content: center;
+            }
+            @include mq(xs){
+                font-size: 3vw;
+            }
+        }
+        &__phone {
+            @include mq(xl-med){
+                @include location-and-size(335px, 60px, 528px, 0px);
+            }
+            @include user-name;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 180%;
+            letter-spacing: 0.01em;
+            @include sm-xs{
+                position: absolute;
+                bottom: 0px;
+                width: 100%;
+                justify-content: center;
+            }
+            @include mq(xs){
+                font-size: 3vw;
+            }
+        }
+        &__about {
+            @include mq(lg){
+                @include location-and-size(51.75px, 30px, 363px, 435px);
+            }
+            @include mq(med){
+                @include location-and-size(51.75px, 30px, 363px, 300px);
+            }
+            @include sm-xs{
+                position: absolute;
+                width: 100%;
+                text-align: center;
+                top: 275px;
+            }
+            @include footertext;
+            &Links{
+                &__list{
+                    @include mq(lg){
+                        @include location-and-size(166px, 160px, 423px, 435px);
+                    }
+                    @include mq(med){
+                        @include location-and-size(166px, 160px, 423px, 300px);
+                    }
+                    @include sm-xs{
+                        position: absolute;
+                        top: 300px;
+                        width: 100%;
+                        text-align: center;
+                    }
+                    @include footer-list-text;
+                }
+                &__item__link {
+                    text-decoration: none;
+                    color: #212353;
+                }
+            }
+        }
+        &__help {
+            @include mq(lg){
+                @include location-and-size(51.75px, 30px, 363px, 633px);
+            }
+            @include mq(med){
+                @include location-and-size(150px, 30px, 363px, 400px);
+                text-align: center;
+            }
+            @include sm-xs{
+                position: absolute;
+                width: 100%;
+                text-align: center;
+                top: 460px;
+            }
+            @include footertext;
+            &Links{
+                &__item__link{
+                    text-decoration: none;
+                    color: hsl(238, 43%, 23%);
+                }
+                &__list{
+                    @include mq(lg){
+                        @include location-and-size(166px, 190px, 423px, 633px);
+                    }
+                    @include mq(med){
+                        @include location-and-size(150px, 190px, 423px, 400px);
+                        text-align: center;
+                    }
+                    @include sm-xs{
+                        position: absolute;
+                        top: 460px + 30px;
+                        width: 100%;
+                        text-align: center;
+                    }
+                    @include footer-list-text;
+                }
+            }
+        }
+        &__socialMedia {
+            @include mq(xl-med){
+                @include location-and-size(178px,110px,$right:0px,$top:363px);
+            }
+            @include sm-xs{
+                position: absolute;
+                width: 100%;
+                height: 110px;
+                bottom:185px;
+                text-align: center;                
+            }
+            &__header {
+                @include mq(xl-med){
+                    @include location-and-size(170px, 30px, 0px, 0px);
+                }
+                @include footertext;
+
+            }
+            &__icons{
+                @include sm-xs{
+                    width: 100%;
+                    height: 80px;
+                    display:flex;
+                    justify-content: space-evenly;
+                    position: absolute;
+                    bottom: 0;
+                }
+            }
+            &__facebook {
+                @include mq(xl-med){
+                    @include social-media{
+                        left: 0px;
+                        background-size: 9.58px 19.81px;
+                        background-image: url(./img/facebook_logo.png);
+                    }
+                }
+                @include sm-xs{
+                    @include social-media{
+                        background-image: url(./img/facebook_logo.png);
+                        background-size: 9.58px 19.81px;
+                    }
+                    position: relative;
+                }
+            }
+            &__twitter {
+                @include mq(xl-med){
+                    @include social-media{
+                        left: 64px;
+                        background-image: url(./img/twitter_logo.png);
+                        background-size: 18.27px 14.56px;
+                    }
+                }
+                @include sm-xs{
+                    @include social-media{
+                        background-image: url(./img/twitter_logo.png);
+                        background-size: 18.27px 14.56px;
+                    }
+                    position: relative;
+                }
+            }
+            &__instagram {
+                @include mq(xl-med){
+                    @include social-media{
+                        right: 0px;
+                        background-image: url(./img/instagram_logo.png);
+                        background-size: 16px 15.47px;
+                    }
+                }
+                @include sm-xs{
+                    @include social-media{
+                        background-image: url(./img/instagram_logo.png);
+                        background-size: 16px 15.47px;
+                    }
+                    position: relative;
+                }
+            }
+        }
+
+    }
+}
+
+
+@media screen and (min-width:1px) and (max-width: $break-xl - 1px){
+    .navbar{
+        padding: 0;
+        margin: 0 auto;
+        @include mq('lg'){
+            max-width: $break-l + 100px;
+        }
+        @include mq('med'){
+            max-width: $break-m + 100px;
+        }
+        @include mq('sm'){
+            max-width: $break-s + 100px;
+        }
+        
+        &__logo{
+            
+            display:flex;
+            margin-top: 59px;
+            @include mq(sm){
+                margin-top: 0;
+            }
+            @include mq(xs){
+                margin-top: 0;
+            }
+            &__dot1 {
+                @include logo-dot-responsive(20px,20px,$color-bg-testimonials);
+                margin-top:15px;       
+            }
+            &__dot2{
+                @include logo-dot-responsive(20px,35px, #f063b8);
+                margin-left: 9px;
+            }
+        }
+        &__list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            margin-top: 64px;
+            margin-left:101px;
+            @include mq(sm){
+                width: 100%;
+                flex-direction: column;
+                margin-left:-50px;
+            }
+            @include mq(xs){
+                width: 100%;
+                flex-direction: column;
+                margin-left:-50px;
+
+            }
+        }
+        &__item{           
+            color: #4B5D68;
+            line-height: 160%;
+            
+            margin-bottom: 10px;
+            @include mq(sm){
+                height: 50px;
+                border: 1px black solid;
+                border-radius: 50px;
+                text-align: center;
+                line-height: 320%;
+
+            }
+            @include mq(xs){
+                height: 50px;
+                border: 1px black solid;
+                border-radius: 50px;
+                text-align: center;
+                line-height: 320%;
+            }
+            &__link {
+                text-decoration: none;
+                color: black;
+                font-size: 16px;
+                font-style: normal;
+                padding: 10px;
+                margin: 0 5px;
+            }
+            &_active{
+                font-weight: 800;
+                color: #212352;
+            }            
+        }
+        &__button{
+            z-index: 1;
+            position: relative;
+            margin-top: 47px;
+            margin-left:auto;
+        }
+        &__buttonArrow{   
+            display: flex;
+            @include mq(sm){
+                display:none;
+            }
+            @include mq(xs){
+                display:none;
+            }
+            @include mq(lg){
+                @include location-and-size-index(210px, 25px,17px,29px,2);
+            }
+            @include mq(med){
+                @include location-and-size(190px, 25px,$top:17px,$right:0px);
+            }
+            @include link;
+            &Line{
+                border: 2px solid $color-bg-testimonials;
+                border-width: 0 3px 3px 0;
+                transform: rotate(180deg);
+                height: 0px;
+                width: 18px;
+                top: 5px;
+                left: 15px;
+                position: relative;
+                @include mq(sm){
+                    display:none;
+                }
+                
+            }
+            &1{
+                border: 2px solid $color-bg-testimonials;
+                width: 14px;
+                height: 14px;
+                position: relative;
+                top: 5px;
+                right: 2px;
+                border-width: 0 3px 3px 0 ;
+                transform:rotate(-45deg);
+                @include mq(sm){
+                    display:none;
+                }
+
+            }
+        }
+        &__link{
+            &__button{
+                width: 210px;
+                height: 60px;
+                background: white;
+                box-shadow: 0px 5px 5px rgba(75, 93, 104, 0.1);
+                border-radius: 50px;
+                border: none;
+                @include mq(sm){
+                    display:none;
+                }
+                @include mq(xs){
+                    display:none;
+                }
+            }
+        }
+    }
+    .container1{
+        padding: 0;
+        max-width: $break-l + 200px;
+        margin: 0 auto;
+        border: 1px rgba(255,255,255,0.1) solid;
+        position:relative;
+        
+        &__header{
+            position:relative;
+            margin-top: 176px;
+            margin-right: 0;
+            width: 625px;
+            font-family: $font-for-header;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 80px;
+            line-height: 110%;
+            display: flex;
+            align-items: center;
+            margin-left: 50px;
+            color: #212353;
+            background-color:rgba(255,255,255,0.6);
+            z-index: 2;
+            @include mq(sm){
+                width: 80vw;
+                text-align: center;
+                font-size: 10vw;
+                margin-top: 50px;
+            }
+            @include mq(xs){
+                width: 80vw;
+                text-align: center;
+                font-size: 10vw;
+                margin-top: 50px;
+            }
+        }
+        &__text {
+            margin-top: 50px;
+            display: block;
+            width: 380px;
+            position:relative;
+            margin-left: 50px;
+            @include text{
+                font-weight: 500;
+                font-size: 18px;
+            }
+            background-color:rgba(255,255,255,0.6);
+            z-index:2;
+            @include sm-xs{
+                width: 80vw;
+                text-align: center;
+                font-size: 3vw;
+                margin-top: 20px;
+
+            }
+        }
+        &__img {
+            max-width: 885px;
+            @include location-and-size(75vw,auto,200px,$right:-50px);
+            z-index: 1;
+            @include mq(sm){
+                position: relative;
+                top:50px;
+                width: 100%;
+                right:0px;
+            }
+            @include mq(xs){
+                position: relative;
+                top:50px;
+                width: 100%;
+                right:0px;
+            }
+        }            
+        &__learnMore {
+            &__button {
+                width: 170px;
+                height: 60px;
+                border: none;
+                margin-left: 50px;
+                margin-top: 50px;
+                background: $color-bg-testimonials;
+                border-radius: 50px;
+                font-family: $primary-font;
+                font-style: normal;
+                font-size: 18px;
+                align-items: center;
+                text-align: center;
+                color: #FFFFFF;
+                font-weight: 800;
+                @include sm-xs{
+                    width: 100%;
+                    margin: 50px 0 0 0;
+                }
+            }
+        }
+    }
+
+    .container2{
+        
+        padding: 0;
+        @include mq(lg){
+            max-width: $break-l + 100px;
+        }
+        @include mq(med){
+            max-width: $break-m + 100px;
+
+        }
+        margin: 100px auto 0 auto;
+        position:relative;
+        background: rgba(240, 99, 184, 0.15);
+        border-radius: 50px;
+        &__img{
+            @include sm-xs{
+                position: relative;
+                width: 70%;
+                margin-left: 15%;
+            }
+        }
+        &__header {
+            @include mq('lg'){
+                @include location-and-size(475px, 100px, 125px, 550px);
+                max-width: 475px;
+                width: 40vw;
+            }
+            @include mq(med){
+                @include location-and-size(375px, 100px, 10px, $right:10px);
+            }
+            height: auto;
+            @include header;
+            font-weight: bold;
+            font-size: 40px;
+            @include sm-xs{
+                width: 80vw;
+                text-align:center;
+                font-size:8vw;
+                margin-left: 50px;
+            }
+        }
+        &__text {
+            @include mq(lg){
+                @include location-and-size(474px, 170px, 265px, 550px);
+                max-width: 474px;
+                width: 40vw;
+                height: auto;
+            }
+            @include mq(med){
+                @include location-and-size(374px, 170px, 165px, $right:2px);
+                max-width: 474px;
+                width: 40vw;
+                height: auto;
+                background: rgba(255, 255, 255, 0.8);
+            }
+            
+            @include text{
+                font-weight: 500;
+                font-size: 18px;            
+            }
+            @include sm-xs{
+                max-width: 874px;
+                width: 80vw;
+                font-size: 3vw;
+                margin-left: 50px;
+                text-align: center;
+                padding-bottom: 25px;
+                padding-top: 25px;
+            }
+        }
+    }
+    .container3{
+        padding: 0;
+        max-width: $break-l + 100px;
+        margin: 170px auto 0 auto;
+        position:relative;
+        
+        &__header {
+            width: 405px;
+            margin: 0 auto;
+            display:block;
+            @include header-container{
+                font-size: 40px;
+            }
+            @include sm-xs{
+                font-size: 6vw;
+                width: 70vw;
+                // font-size: 3vw;
+                margin: 25px auto 0 auto;
+                
+            }
+        }
+
+        &__text {
+            display: block;
+            margin: 50px auto 0 auto;
+            max-width:584px;
+            top: 120px;
+            @include text;
+            font-weight: 500;
+            font-size: 18px;
+            text-align: center;
+            @include sm-xs{
+                width: 70vw;
+                font-size: 3vw;
+                margin: 25px auto 0 auto;
+            }
+        }
+    }
+}
+.navbar__item2{
+    display:none;
+    @include mq(sm){
+        display:contents;
+    }
+    @include mq(xs){
+        display:contents;
+    }
+    &__linkButton{
+        width: 100%;
+        height: 60px;
+        background: white;
+        box-shadow: 0px 5px 5px rgba(75, 93, 104, 0.1);
+        border-radius: 50px;
+        border: none;        
+        text-decoration: none;
+        font-family: $primary-font;
+        font-style: normal;
+        font-weight: 800;
+        font-size: 16px;
+        line-height: 160%;
+        align-items: center;
+        letter-spacing: 0.005em;
+        color: #212353;
+        
+    }      
+    &__buttonArrow{   
+        position: absolute;
+        top: 331px;
+        width: 100%;
+        right: 40px;
+        justify-content: end;
+        @include mq(xs){
+            right: 10px;
+        }  
+        @include link;
+        &Line{
+            border: 2px solid $color-bg-testimonials;
+            border-width: 0 3px 3px 0;
+            transform: rotate(180deg);
+            height: 0px;
+            width: 18px;
+            top: 5px;
+            left: 15px;
+            position: relative;          
+
+        }
+        &1{
+            border: 2px solid $color-bg-testimonials;
+            width: 14px;
+            height: 14px;
+            position: relative;
+            top: 5px;
+            right: 2px;
+            border-width: 0 3px 3px 0 ;
+            transform:rotate(-45deg);
+        }
+    }
+   
+}
